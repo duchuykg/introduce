@@ -9,7 +9,7 @@ const http = require("http").createServer(app);
 // require("dotenv").config();
 
 const mongoDB_url =
-  "mongodb+srv://huypham2002khmt:duchuykg@cluster0.mftlzrt.mongodb.net/  ";
+  "mongodb+srv://huypham2002khmt:duchuykg@cluster0.mftlzrt.mongodb.net";
 mongoose
   .connect(mongoDB_url, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
