@@ -1,15 +1,18 @@
 const app = require("express")();
 const mongoose = require("mongoose");
-// const bodyParser = require("body-parser");
-const http = require("http").createServer(app);
-// const cors = require("cors");
+const bodyParser = require("body-parser");
+const gkRouter = require("./gk/gk.router");
+const gkitemRouter = require("./gkitem/gkitem.router");
 
-// app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(bodyParser.json());
-// require("dotenv").config();
+const http = require("http").createServer(app);
+const cors = require("cors");
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+require("dotenv").config();
 
 const mongoDB_url =
-  "mongodb+srv://huypham2002khmt:duchuykg@cluster0.mftlzrt.mongodb.net";
+  "mongodb+srv://duchuy:duchuy@cluster0.mftlzrt.mongodb.net/test";
 mongoose
   .connect(mongoDB_url, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
@@ -19,7 +22,8 @@ mongoose
 
 http.listen(4000, function () {
   console.log("listening on port 4000");
-  // const getText = test.pdfToText('./uploads/hello.pdf');
 });
 
-// app.use(cors());
+app.use(cors());
+app.use("/gk", gkRouter);
+app.use("/gkitem", gkitemRouter);
