@@ -71,6 +71,7 @@ const PostDetail: React.FC<Props> = () => {
             <ReactMarkdown>
             
           {data.recordMap}
+
           </ReactMarkdown>
            
         </div>

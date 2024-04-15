@@ -28,7 +28,7 @@ class gkController {
         slug: slug, 
         tags,
         category,
-        summary,
+        summary: "Phạm Hoàng Đức Huy tham gia kỳ thi " + title + " đạt " + certificate.toLowerCase() + " " + level.toLowerCase(),
         level,
         title,
         status: ["Public"],
@@ -40,7 +40,9 @@ class gkController {
 
     const gkitem = new gkitemModel({
       idGk: gk.slug,
-      detail: "Phạm Hoàng Đức Huy học " +  gk.tags[0].toLowerCase() + " tham gia kỳ thi " + gk.title + " đạt " + gk.certificate.toLowerCase() + " " + gk.level.toLowerCase() + ". Xin được chúc mừng vì thành tích xuất sắc này."
+      detail: "Phạm Hoàng Đức Huy học " +  gk.tags[0].toLowerCase() + " tham gia kỳ thi " + gk.title + " đạt " + gk.certificate.toLowerCase() + " " + gk.level.toLowerCase() + `. 
+      
+      Đó là một thành quả đáng tự hào và đáng khen ngợi. Bằng sự nỗ lực và tâm huyết, em đã vượt qua mọi khó khăn và chinh phục thành công. Chúc em tiếp tục bước đi trên con đường học tập với đam mê và sự kiên nhẫn. Mong rằng em sẽ luôn giữ vững đam mê và không ngừng phấn đấu để đạt được nhiều thành công hơn nữa trong tương lai. Chúc em luôn mạnh khỏe, hạnh phúc và thành công trong mọi sự nghiệp !`
     });
 
     await gk.save()

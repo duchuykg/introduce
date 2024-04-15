@@ -46,8 +46,20 @@ const Post: React.FC = () => {
     { value: "NONE", label: "NONE" },
   ];
 
+  const options_CATEGORY = [
+    { value: "", label: "MÔN ..."},
+    { value: "TOÁN", label: "TOÁN" },
+    { value: "VẬT LÝ", label: "VẬT LÝ" },
+    { value: "VĂN", label: "VĂN" },
+    { value: "TIẾNG ANH", label: "TIẾNG ANH" },
+    { value: "TIN HỌC", label: "TIN HỌC" },
+    { value: "CHỮ ĐẸP", label: "CHỮ ĐẸP" },
+    { value: "CỜ VUA", label: "CỜ VUA" },
+    { value: "TOÀN DIỆN", label: "NONE" },
+  ];
+
   const options_LEVEL = [
-    { value: "", label: "CẤP ..."},
+    { value: "", label: "CẤP ...."},
     { value: "CẤP TRƯỜNG", label: "CẤP TRƯỜNG" },
     { value: "CẤP HUYỆN", label: "CẤP HUYỆN" },
     { value: "CẤP THÀNH PHỐ", label: "CẤP THÀNH PHỐ" },
@@ -96,7 +108,7 @@ const Post: React.FC = () => {
   const handlePost = async () => {
     handleUpload
     setIsPost(true)
-    let slug = await postPost(title, tags, category, level, certificate, summary, thumbnail)
+    let slug = await postPost(title, tags, category, level, certificate, thumbnail)
     window.location.href = `/${slug}`
   }
 
@@ -145,14 +157,14 @@ const Post: React.FC = () => {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
-          <CategoryInput value={category} onChange={handleChange} />
+          <CategoryInput value={category} onChange={handleChange}/>
           <TagInput value={tags} onChange={handleTagChange} options={options_TAG}/>
           <CertificateInput value={certificate} onChange={handleCerChange} options={options_CER}/>
           <LevelInput value={level} onChange={handleLevelChange} options={options_LEVEL} />
-           <SummaryInput
+           {/* <SummaryInput
             value={summary}
             onChange={(e) => setSummary(e.target.value)}
-          />
+          /> */}
            
           <code>
             {Object.keys(res).length > 0
