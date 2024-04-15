@@ -4,8 +4,6 @@ export const LINK_TO_REGISTER = "register" as string;
 
 export const LINK_TO_RECEIVE = "receive" as string;
 
-export const LINK_TO_POST = "post" as string;
-
 export const LINK_TO_SUBMIT = "submit" as string;
 
 export var usePath = true;

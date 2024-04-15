@@ -1,27 +1,36 @@
-import styled from "@emotion/styled"
-import React, { InputHTMLAttributes, ReactNode } from "react"
-import { Emoji } from "src/components/Emoji"
+import React, { ChangeEvent } from "react";
+import styled from "@emotion/styled";
+import { Emoji } from "src/components/Emoji";
 
-interface Props extends React.TextareaHTMLAttributes<HTMLTextAreaElement> { }
+interface TagInputProps {
+  value: string;
+  onChange: (selectedValue: string) => void;
+  options: { value: string; label: string }[];
+}
 
+const LevelInput: React.FC<TagInputProps> = ({ value, onChange, options }) => {
+  const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const selectedValue = e.target.value;
+    onChange(selectedValue);
+  };
 
-const LevelInput: React.FC<Props> = ({ ...props }) => {
   return (
     <StyledWrapper>
       <div className="top-input">
-        <Emoji>💼</Emoji> Level
+        <Emoji>💼</Emoji> CẤP
       </div>
-      <textarea
-        className="mid"
-        rows={1}
-        placeholder="Fill your level ..."
-        {...props}
-      ></textarea>
+      <select className="mid" value={value} onChange={handleSelectChange}>
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
     </StyledWrapper>
-  )
-}
+  );
+};
 
-export default LevelInput
+export default LevelInput;
 
 const StyledWrapper = styled.div`
   margin-bottom: 1rem;
@@ -29,11 +38,13 @@ const StyledWrapper = styled.div`
   @media (min-width: 768px) {
     margin-bottom: 2rem;
   }
+
   > .top-input {
     padding: 0.25rem;
     margin-bottom: 0.75rem;
-    font-size: 1rem; 
+    font-size: 1rem;
   }
+
   > .mid {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
@@ -42,7 +53,6 @@ const StyledWrapper = styled.div`
     border-radius: 1rem;
     outline-style: none;
     width: 100%;
-    font-size: 1rem;
     background-color: ${({ theme }) => theme.colors.gray4};
   }
-`
+`;

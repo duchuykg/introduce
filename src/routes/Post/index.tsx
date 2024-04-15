@@ -5,11 +5,12 @@ import TitleInput from "./TitleInput"
 import TagInput from "./TagInput"
 import CategoryInput from "./CategoryInput"
 import CertificateInput from "./CertificateInput"
-
+import axios from 'axios';
 import LevelInput from "./LevelInput"
 import SummaryInput from "./SummaryInput"
 import ImageInput from "./ImageInput"
 import { postPost } from "src/apis"
+import Image from "next/image"
 
 const Post: React.FC = () => {
   const [title, setTitle] = useState("")
@@ -19,8 +20,73 @@ const Post: React.FC = () => {
   const [certificate, setCertificate] = useState("")
   const [summary, setSummary] = useState("")
   const [thumbnail, setThumbnail] = useState("")
-
   const [isPost, setIsPost] = useState(false) 
+  const [file, setFile] = useState("")
+  const [res, setRes] = useState<Record<string, any>>({});
+  const [loading, setLoading] = useState(false);
+
+  const options_TAG = [{ value: "", label: "LỚP ..." }];
+
+  for (let i = 1; i <= 12; i++) {
+    const option = {
+      value: `LỚP ${i}`,
+      label: `LỚP ${i}`,
+    };
+
+    options_TAG.push(option);
+  }
+  const options_CER = [
+    { value: "", label: "GIẢI ..."},
+    { value: "GIẢI ĐẶC BIỆT", label: "GIẢI ĐẶC BIỆT" },
+    { value: "GIẢI NHẤT", label: "GIẢI NHẤT" },
+    { value: "GIẢI NHÌ", label: "GIẢI NHÌ" },
+    { value: "GIẢI BA", label: "GIẢI BA" },
+    { value: "GIẢI KHUYẾN KHÍCH", label: "GIẢI KHUYẾN KHÍCH" },
+    { value: "HỌC SINH GIỎI", label: "HỌC SINH GIỎI" },
+    { value: "NONE", label: "NONE" },
+  ];
+
+  const options_LEVEL = [
+    { value: "", label: "CẤP ..."},
+    { value: "CẤP TRƯỜNG", label: "CẤP TRƯỜNG" },
+    { value: "CẤP HUYỆN", label: "CẤP HUYỆN" },
+    { value: "CẤP THÀNH PHỐ", label: "CẤP THÀNH PHỐ" },
+    { value: "CẤP TỈNH", label: "CẤP TỈNH" },
+    { value: "CẤP QUỐC GIA", label: "CẤP QUỐC GIA" },
+    { value: "NONE", label: "NONE" },
+  ];
+  
+  
+
+  const handleTagChange = (selectedTag : any) => {
+    setTags(selectedTag);
+  };
+  const handleCerChange = (selectedCer : any) => {
+    setCertificate(selectedCer);
+  };
+  const handleLevelChange = (selectedCer : any) => {
+    setLevel(selectedCer);
+  };
+
+  const handleUpload = async () => {
+    try {
+      setLoading(true);
+
+      const data = new FormData();
+      console.log(file)
+      if (file) {
+        data.append("my_file", file);
+      }
+      console.log(data)
+      const res = await axios.post("http://localhost:4000/upload", data);
+      setThumbnail(res.data.url)
+      
+    } catch (error : any) {
+      alert(error.message);
+    }  finally {
+      setLoading(false);
+    }
+  };
 
   const handleChange = (e : any) => {
     const selectedCategory = e.target.value.split(","); // Chuyển đổi chuỗi thành mảng string bằng cách tách chuỗi theo dấu phẩy
@@ -28,11 +94,10 @@ const Post: React.FC = () => {
   };
   
   const handlePost = async () => {
+    handleUpload
     setIsPost(true)
     let slug = await postPost(title, tags, category, level, certificate, summary, thumbnail)
-    // window.location.href = `/${slug}`
-    window.location.href = `/post`
-
+    window.location.href = `/${slug}`
   }
 
   return (
@@ -43,24 +108,65 @@ const Post: React.FC = () => {
         </div>
         <div className="text">POST ACHIEVMENT</div>
         <div className="form">
-        
+          <ImageInput
+            /> 
+            <div style={{ display: 'flex' }}>
+              <input
+                id="file" type="file"
+                onChange={(e : any) =>
+                  setFile(e.target.files[0])
+                }
+                multiple={false}
+              />
+
+              <div className="form-submit" style={{ marginLeft: 'auto' }} >
+                <button
+                  className="btn-submit1"
+                  onClick={handleUpload} // Use handleRegister function for onClick event
+                >
+                  {loading ? "Uploading ..." : "Upload"}
+                </button>
+              
+              </div>
+              
+            </div>
+            {
+              thumbnail ? 
+                <Image
+                src={thumbnail}
+                alt={title}
+                width={600} 
+                height={400} 
+              />
+              : <></>
+            }
+          
           <TitleInput
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
           <CategoryInput value={category} onChange={handleChange} />
-          <TagInput value={tags} onChange={(e) => setTags(e.target.value)} />
-          <CertificateInput value={certificate} onChange={(e) => setCertificate(e.target.value)} />
-          <LevelInput value={level} onChange={(e) => setLevel(e.target.value)} />
+          <TagInput value={tags} onChange={handleTagChange} options={options_TAG}/>
+          <CertificateInput value={certificate} onChange={handleCerChange} options={options_CER}/>
+          <LevelInput value={level} onChange={handleLevelChange} options={options_LEVEL} />
            <SummaryInput
             value={summary}
             onChange={(e) => setSummary(e.target.value)}
           />
-           <ImageInput
-            value={thumbnail}
-            onChange={(e) => setThumbnail(e.target.value)}
-          />
-         
+           
+          <code>
+            {Object.keys(res).length > 0
+              ? Object.keys(res).map((key) => (
+                  <p className="output-item" key={key}>
+                    <span>{key}:</span>
+                    <span>
+                      {typeof res[key] === "object" ? "object" : res[key]}
+                    </span>
+                  </p>
+                ))
+              : null}
+          </code>
+          
           <div className="form-submit">
             {isPost || (
               <button

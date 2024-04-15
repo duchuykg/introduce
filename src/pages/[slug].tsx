@@ -12,7 +12,6 @@ import { dehydrate } from "@tanstack/react-query"
 import usePostQuery from "src/hooks/usePostQuery"
 import { FilterPostsOptions } from "src/libs/utils/notion/filterPosts"
 import {
-  LINK_TO_POST,
   LINK_TO_SUBMIT,
 } from "src/constants"
 import Post from "src/routes/Post"
@@ -44,6 +43,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const postDetail = detailPosts.find((t: any) => t.slug === slug)
 
   const recordMap = await getRecordMap(postDetail?.slug!)
+  
   await queryClient.prefetchQuery(queryKey.post(`${slug}`), () => ({
     ...postDetail,
     recordMap,
@@ -62,7 +62,6 @@ const DetailPage: NextPageWithLayout = () => {
   if (!post) return <CustomError />
   if (post.slug === LINK_TO_SUBMIT) return <Post />
   
-  if (post.slug === LINK_TO_POST) return <Feed />
   const image =
     post.thumbnail ??
     CONFIG.ogImageGenerateURL ??

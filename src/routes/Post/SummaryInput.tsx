@@ -8,7 +8,7 @@ const SummaryInput: React.FC<Props> = ({ ...props }) => {
   return (
     <StyledWrapper>
       <div className="top-input">
-        <Emoji>📝</Emoji> Summary 
+        <Emoji>📝</Emoji> MÔ TẢ 
       </div>
       <input
         className="mid"

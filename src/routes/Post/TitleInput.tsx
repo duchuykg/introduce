@@ -8,12 +8,12 @@ const TitleInput: React.FC<Props> = ({ ...props }) => {
   return (
     <StyledWrapper>
       <div className="top-input">
-        <Emoji>🕵️‍♂️</Emoji> Title 
+        <Emoji>🕵️‍♂️</Emoji> TÊN GIẢI THƯỞNG 
       </div>
       <input
         className="mid"
         type="text"
-        placeholder="Fill your title ..."
+        placeholder="Tên giải thưởng ..."
         {...props}
       />
     </StyledWrapper>

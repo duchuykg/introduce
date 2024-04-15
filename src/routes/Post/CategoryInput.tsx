@@ -9,7 +9,7 @@ const CategoryInput: React.FC<Props> = ({ ...props }) => {
   return (
     <StyledWrapper>
       <div className="top-input">
-        <Emoji>💼</Emoji> Category
+        <Emoji>💼</Emoji> MÔN HỌC
       </div>
       <textarea
         className="mid"
