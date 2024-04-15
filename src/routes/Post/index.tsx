@@ -11,6 +11,7 @@ import SummaryInput from "./SummaryInput"
 import ImageInput from "./ImageInput"
 import { postPost } from "src/apis"
 import Image from "next/image"
+import { LINK_TO_SERVER } from 'src/constants';
 
 const Post: React.FC = () => {
   const [title, setTitle] = useState("")
@@ -25,7 +26,7 @@ const Post: React.FC = () => {
   const [res, setRes] = useState<Record<string, any>>({});
   const [loading, setLoading] = useState(false);
 
-  const options_TAG = [{ value: "", label: "LỚP ..." }];
+  const options_TAG = [{ value: "", label: "LỚP ..." }, { value: "MẪU GIÁO", label: "MẪU GIÁO" }];
 
   for (let i = 1; i <= 12; i++) {
     const option = {
@@ -55,7 +56,8 @@ const Post: React.FC = () => {
     { value: "TIN HỌC", label: "TIN HỌC" },
     { value: "CHỮ ĐẸP", label: "CHỮ ĐẸP" },
     { value: "CỜ VUA", label: "CỜ VUA" },
-    { value: "TOÀN DIỆN", label: "NONE" },
+    { value: "TOÀN DIỆN", label: "TOÀN DIỆN" },
+    { value: "CHÁU NGOAN BÁC HỒ", label: "CHÁU NGOAN BÁC HỒ" },
   ];
 
   const options_LEVEL = [
@@ -90,7 +92,7 @@ const Post: React.FC = () => {
         data.append("my_file", file);
       }
       console.log(data)
-      const res = await axios.post("http://localhost:4000/upload", data);
+      const res = await axios.post(`${LINK_TO_SERVER}/upload`, data);
       setThumbnail(res.data.url)
       
     } catch (error : any) {
