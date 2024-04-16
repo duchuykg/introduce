@@ -15,7 +15,8 @@ const NavBar: React.FC = () => {
   return (
     <StyledWrapper>
       <div className="wrapper">
-        <Link href={"/submit"}> 📝 </Link>
+        {/* <Link href={"/submit"}> 📝 </Link> */}
+        <Link href={"/about"}>ANALYST</Link>
         {/* <div ref={dropdownRef} onClick={handleOpen} className="more-button">
           More
         </div> */}

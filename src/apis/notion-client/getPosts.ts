@@ -8,37 +8,33 @@ export const getPosts = async () => {
     const response = await axios.get(`${LINK_TO_SERVER}/gk`);
     const newData = response.data.gks;
 
-    const data = [
-      {
-          "date": {
-              "start_date": "2024-04-13T17:58:29.311Z"
-          },
-          "_id": "661ac7c56f5a03e2462cba37",
-          "type": [
-              "Post"
-          ],
-          "slug": "87c7c5068ad483822fa8",
-          "tags": [
-              ""
-          ],
-          "category": [
-              "1",
-              " 2"
-          ],
-          "summary": "",
-          "level": "",
-          "title": "",
-          "status": [
-              "Public"
-          ],
-          "createdTime": "2024-04-13T17:58:29.311Z",
-          "fullWidth": false,
-          "thumbnail": "https://i.imgur.com/yaw0F68.jpeg",
-          "certificate": "",
-          "author": [],
-          "__v": 0
-      }
-  ];
+    const data = [{
+      date: {
+          start_date: "2022-06-09"
+      },
+      _id: "661ac7c56f5a03e2462cba37",
+      type: [
+          "Post"
+      ],
+      slug: 'about',
+      tags: [
+          ""
+        ],
+        category: [
+            "",
+        ],
+        summary: "",
+        level: "",
+        title: "",
+        status: [
+            "Public"
+        ],
+        createdTime: "Sat Sep 02 2023 07:57:04 GMT+0700 (Indochina Time)",
+        fullWidth: false,
+        thumbnail: "",
+        certificate: "",
+        author: [],
+    }];
     
     const mergedData = [...data, ...newData];
 
