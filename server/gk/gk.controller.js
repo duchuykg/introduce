@@ -28,8 +28,8 @@ class gkController {
         slug: slug, 
         tags,
         category,
-        summary: certificate === "HỌC SINH GIỎI" || gk.certificate === "CHÁU NGOAN BÁC HỒ"
-        ? "Chúc mừng Phạm Hoàng Đức Huy đạt danh hiệu " + certificate.toLowerCase() + " " + tags
+        summary: certificate === "HỌC SINH GIỎI" || certificate === "CHÁU NGOAN BÁC HỒ"
+        ? "Chúc mừng Phạm Hoàng Đức Huy đạt danh hiệu " + certificate + " " + tags
         : "Chúc mừng Phạm Hoàng Đức Huy " + tags + " tham gia " + title + " đạt " + certificate.toLowerCase() + " " + level.toLowerCase(),
         level,
         title,
@@ -44,11 +44,11 @@ class gkController {
       idGk: gk.slug,
       detail: gk.certificate === "HỌC SINH GIỎI" || gk.certificate === "CHÁU NGOAN BÁC HỒ"
       
-      ? "Phạm Hoàng Đức Huy đạt danh hiệu " + certificate.toLowerCase() + " " + tags + `. 
+      ? "Phạm Hoàng Đức Huy đạt danh hiệu " + certificate + " " + tags + `. 
       
       Đó là một thành quả đáng tự hào và đáng khen ngợi. Bằng sự nỗ lực và tâm huyết, em đã vượt qua mọi khó khăn và chinh phục thành công. Chúc em tiếp tục bước đi trên con đường học tập với đam mê và sự kiên nhẫn. Mong rằng em sẽ luôn giữ vững đam mê và không ngừng phấn đấu để đạt được nhiều thành công hơn nữa trong tương lai. Chúc em luôn mạnh khỏe, hạnh phúc và thành công trong mọi sự nghiệp !`
     
-      : "Phạm Hoàng Đức Huy " +  gk.tags + " tham gia kỳ thi " + gk.title + " đạt " + gk.certificate.toLowerCase() + " " + gk.level.toLowerCase() + `. 
+      : "Phạm Hoàng Đức Huy " +  gk.tags + " tham gia " + gk.title + " đạt " + gk.certificate.toLowerCase() + " " + gk.level.toLowerCase() + `. 
       
       Đó là một thành quả đáng tự hào và đáng khen ngợi. Bằng sự nỗ lực và tâm huyết, em đã vượt qua mọi khó khăn và chinh phục thành công. Chúc em tiếp tục bước đi trên con đường học tập với đam mê và sự kiên nhẫn. Mong rằng em sẽ luôn giữ vững đam mê và không ngừng phấn đấu để đạt được nhiều thành công hơn nữa trong tương lai. Chúc em luôn mạnh khỏe, hạnh phúc và thành công trong mọi sự nghiệp !`
     });

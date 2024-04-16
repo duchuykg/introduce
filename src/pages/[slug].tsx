@@ -68,6 +68,7 @@ const DetailPage: NextPageWithLayout = () => {
     `${CONFIG.ogImageGenerateURL}/${encodeURIComponent(post.title)}.png`
 
   const date = post.date?.start_date || post.createdTime || ""
+  
   const meta = {
     title: post.title,
     date: new Date(date).toISOString(),

@@ -14,7 +14,7 @@ const usePostQuery = () => {
   })
   if (slug === LINK_TO_SUBMIT) {
     const datafordirect = {
-      date: { start_date: '2024-04-13T17:58:29.311Z' },
+      date: { start_date: '2022-06-09' },
       _id: '',
       type: [ ],
       slug: 'submit',
@@ -24,7 +24,7 @@ const usePostQuery = () => {
       level: '',
       title: '',
       status: [],
-      createdTime: '2024-04-13T17:58:29.311Z',
+      createdTime: 'Sat Sep 02 2023 07:57:04 GMT+0700 (Indochina Time)',
       fullWidth: false,
       thumbnail: '',
       certificate: '',
