@@ -59,7 +59,7 @@ mongoose
   })
   .catch((err) => console.log(err));
 
-http.listen(4000, function () {
+http.listen(4000 || process.env.PORT, function () {
   console.log("listening on port 4000");
 });
 
