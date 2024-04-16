@@ -29,8 +29,8 @@ class gkController {
         tags,
         category,
         summary: certificate === "HỌC SINH GIỎI"
-        ? "Phạm Hoàng Đức Huy đạt danh hiệu " + certificate.toLowerCase() + " " + tags
-        : "Phạm Hoàng Đức Huy " + tags + " tham gia " + title + " đạt " + certificate.toLowerCase() + " " + level.toLowerCase(),
+        ? "Chúc mừng Phạm Hoàng Đức Huy đạt danh hiệu " + certificate.toLowerCase() + " " + tags
+        : "Chúc mừng Phạm Hoàng Đức Huy " + tags + " tham gia " + title + " đạt " + certificate.toLowerCase() + " " + level.toLowerCase(),
         level,
         title,
         status: ["Public"],
