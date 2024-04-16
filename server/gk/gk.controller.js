@@ -28,7 +28,7 @@ class gkController {
         slug: slug, 
         tags,
         category,
-        summary: certificate === "HỌC SINH GIỎI"
+        summary: certificate === "HỌC SINH GIỎI" || gk.certificate === "CHÁU NGOAN BÁC HỒ"
         ? "Chúc mừng Phạm Hoàng Đức Huy đạt danh hiệu " + certificate.toLowerCase() + " " + tags
         : "Chúc mừng Phạm Hoàng Đức Huy " + tags + " tham gia " + title + " đạt " + certificate.toLowerCase() + " " + level.toLowerCase(),
         level,
@@ -42,7 +42,7 @@ class gkController {
 
     const gkitem = new gkitemModel({
       idGk: gk.slug,
-      detail: gk.certificate === "HỌC SINH GIỎI" 
+      detail: gk.certificate === "HỌC SINH GIỎI" || gk.certificate === "CHÁU NGOAN BÁC HỒ"
       
       ? "Phạm Hoàng Đức Huy đạt danh hiệu " + certificate.toLowerCase() + " " + tags + `. 
       

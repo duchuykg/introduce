@@ -44,6 +44,7 @@ const Post: React.FC = () => {
     { value: "GIẢI BA", label: "GIẢI BA" },
     { value: "GIẢI KHUYẾN KHÍCH", label: "GIẢI KHUYẾN KHÍCH" },
     { value: "HỌC SINH GIỎI", label: "HỌC SINH GIỎI" },
+    { value: "CHÁU NGOAN BÁC HỒ", label: "CHÁU NGOAN BÁC HỒ" },
     { value: "NONE", label: "NONE" },
   ];
 
