@@ -32,7 +32,7 @@ const TagList: React.FC<Props> = () => {
     }
   }
 
-  const tags = [];
+  const tags = ["MẪU GIÁO"];
   for (let i = 1; i <= 12; i++) {
     tags.push(`LỚP ${i}`);
   }
