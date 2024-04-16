@@ -32,13 +32,18 @@ const TagList: React.FC<Props> = () => {
     }
   }
 
+  const tags = [];
+  for (let i = 1; i <= 12; i++) {
+    tags.push(`LỚP ${i}`);
+  }
+
   return (
     <StyledWrapper>
       <div className="top">
         <Emoji>🔖</Emoji> Tags
       </div>
       <div className="list">
-        {Object.keys(data).sort().map((key) => (
+        {tags.map((key) => (
           <a
             key={key}
             data-active={key === currentTag}
