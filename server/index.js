@@ -10,9 +10,9 @@ const cloudinary = require("cloudinary").v2;
 const Multer = require("multer");
 
 cloudinary.config({
-  cloud_name: "dsqu9voqv",
-  api_key: "576281648752174",
-  api_secret: "pvMQLA8EKtRfOTcJ6fkX135-Qe8",
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
 const storage = new Multer.memoryStorage();
@@ -50,8 +50,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 require("dotenv").config();
 
-const mongoDB_url =
-  "mongodb+srv://duchuy:duchuy@cluster0.mftlzrt.mongodb.net/test";
+const mongoDB_url = process.env.DATABASE_LINK;
 mongoose
   .connect(mongoDB_url, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
