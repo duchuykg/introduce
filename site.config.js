@@ -13,17 +13,17 @@ const CONFIG = {
   projects: [
     {
       name: `Achievement`,
-      href: "https://github.com/MauDucKG/share-CV",
+      href: "https://github.com/duchuykg/introduce",
     },
   ],
   // blog setting (required)
   blog: {
     title: "Achievement",
-    description: "Welcome to share-CV!",
+    description: "Welcome to Achievement!",
   },
 
   // CONFIG configration (required)
-  link: "https://share-cv.vercel.app",
+  link: "introduce-one.vercel.app",
   since: 2023, // If leave this empty, current year will be used.
   lang: "en-US", // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES', 'ko-KR']
   ogImageGenerateURL: "https://og-image-korean.vercel.app", // The link to generate OG image, don't end with a slash
@@ -49,7 +49,7 @@ const CONFIG = {
   utterances: {
     enable: true,
     config: {
-      repo: "MauDucKG/share-CV" ||"",
+      repo: "duchuykg/introduce" ||"",
       "issue-term": "og:title",
       label: "💬 Utterances",
     },
