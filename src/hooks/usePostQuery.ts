@@ -53,6 +53,26 @@ const usePostQuery = () => {
       recordMap: ""
     } 
     return datafordirect;
+  } else if (slug === "profile") {
+    const datafordirect = {
+      date: { start_date: '2022-06-09' },
+      _id: '',
+      type: [ ],
+      slug: 'profile',
+      tags: [ '' ],
+      category: [],
+      summary: '',
+      level: '',
+      title: '',
+      status: [],
+      createdTime: 'Sat Sep 02 2023 07:57:04 GMT+0700 (Indochina Time)',
+      fullWidth: false,
+      thumbnail: '',
+      certificate: '',
+      author: [],
+      recordMap: ""
+    } 
+    return datafordirect;
   } 
   else if (data?.recordMap === "") return undefined
   return data

@@ -13,9 +13,11 @@ import usePostQuery from "src/hooks/usePostQuery"
 import { FilterPostsOptions } from "src/libs/utils/notion/filterPosts"
 import {
   LINK_TO_SUBMIT,
+  LINK_TO_PROFILE
 } from "src/constants"
 import Post from "src/routes/Post"
 import Feed from "src/routes/Feed"
+import Profile from "src/routes/Profile"
 
 const filter: FilterPostsOptions = {
   acceptStatus: ["Public", "PublicOnDetail"],
@@ -61,6 +63,7 @@ const DetailPage: NextPageWithLayout = () => {
   const post = usePostQuery()
   if (!post) return <CustomError />
   if (post.slug === LINK_TO_SUBMIT) return <Post />
+  if (post.slug === LINK_TO_PROFILE) return <Profile />
   
   const image =
     post.thumbnail ??

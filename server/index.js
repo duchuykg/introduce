@@ -1,6 +1,7 @@
 const app = require("express")();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const loginRouter = require("./login/login.router");
 const gkRouter = require("./gk/gk.router");
 const gkitemRouter = require("./gkitem/gkitem.router");
 
@@ -64,3 +65,4 @@ http.listen(4000 || process.env.PORT, function () {
 
 app.use("/gk", gkRouter);
 app.use("/gkitem", gkitemRouter);
+app.use("/login", loginRouter);
