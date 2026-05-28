@@ -6,7 +6,11 @@ import { LINK_TO_SUBMIT } from "src/constants"
 
 const usePostQuery = () => {
   const router = useRouter()
-  const { slug } = router.query
+  const routeSlug = router.query.slug
+  const slug =
+    typeof routeSlug === "string"
+      ? routeSlug
+      : router.pathname.replace("/", "") || undefined
 
   const { data } = useQuery<PostDetail>({
     queryKey: queryKey.post(`${slug}`),

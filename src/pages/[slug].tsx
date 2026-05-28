@@ -19,6 +19,8 @@ import Post from "src/routes/Post"
 import Feed from "src/routes/Feed"
 import Profile from "src/routes/Profile"
 
+const reservedSlugs = [LINK_TO_SUBMIT, LINK_TO_PROFILE, "about"]
+
 const filter: FilterPostsOptions = {
   acceptStatus: ["Public", "PublicOnDetail"],
   acceptType: ["Paper", "Post", "Page"],
@@ -30,7 +32,9 @@ export const getStaticPaths = async () => {
 
   return {
     // paths: filteredPost.map((row) => !usePath ? `/${row.slug}` : `/${row.slug}`),
-    paths: filteredPost.map((row) => `/${row.slug}`),
+    paths: filteredPost
+      .filter((row) => !reservedSlugs.includes(row.slug))
+      .map((row) => `/${row.slug}`),
     fallback: true,
   }
 }
@@ -43,6 +47,13 @@ export const getStaticProps: GetStaticProps = async (context) => {
   
   const detailPosts = filterPosts(posts, filter)
   const postDetail = detailPosts.find((t: any) => t.slug === slug)
+
+  if (!postDetail || reservedSlugs.includes(`${slug}`)) {
+    return {
+      notFound: true,
+      revalidate: CONFIG.revalidateTime,
+    }
+  }
 
   const recordMap = await getRecordMap(postDetail?.slug!)
   

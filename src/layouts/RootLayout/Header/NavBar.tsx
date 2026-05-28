@@ -6,52 +6,52 @@ import { useEffect, useState } from "react"
 import { loginGithub } from "src/apis"
 
 const NavBar: React.FC = () => {
-  const handleReload = (e : any) => {
+  const handleReload = (e: string) => {
     if (e === "/post" || e === "/about" || e === "/profile" || e === "/") {
-      window.location.href = `${e}`;
+      window.location.href = e
     }
   }
   const [userdata, setUserData] = useState(DATA_USER)
   const [isLogin, setIsLogin] = useState(false)
-  const [utterancesParam, setUtterancesParam] = useState("");
-  const logouts = [
-    { id: 2, name: "Logout", to: "/" },
-  ]
+  const [utterancesParam, setUtterancesParam] = useState("")
+  const logouts = [{ id: 2, name: "Logout", to: "/" }]
   const [dropdownLogout, logout, handleLogout] = useDropdown()
   const handleLogoutGithub = () => {
     setIsLogin(false)
-    if (typeof localStorage !== "undefined" && localStorage.getItem("utterances-session")) {
-      localStorage.clear();
+    if (
+      typeof localStorage !== "undefined" &&
+      localStorage.getItem("utterances-session")
+    ) {
+      localStorage.clear()
     }
-    window.location.href = "/";
+    window.location.href = "/"
   }
 
-  const redirect_uri = "https://api.utteranc.es/authorize?redirect_uri=" + encodeURIComponent(LINK_TO_CLIENT);
-
-  const links = [
-    { id: 5, name: "📣 Submit Post", to: LINK_TO_CLIENT + "/submit" },
-  ]
-  const [dropdownRef, opened, handleOpen] = useDropdown()
+  const redirect_uri =
+    "https://api.utteranc.es/authorize?redirect_uri=" +
+    encodeURIComponent(LINK_TO_CLIENT)
 
   let utterancesParam1
-  if (typeof localStorage !== "undefined" && localStorage.getItem("utterances-session")) {
+  if (
+    typeof localStorage !== "undefined" &&
+    localStorage.getItem("utterances-session")
+  ) {
     utterancesParam1 = localStorage.getItem("utterances-session")
   }
   if (typeof localStorage !== "undefined" && localStorage.getItem("user_data")) {
-    const storedUserDataJSON = localStorage.getItem("user_data");
+    const storedUserDataJSON = localStorage.getItem("user_data")
     if (storedUserDataJSON) {
-      setUserData(JSON.parse(storedUserDataJSON));
-    } 
-
+      setUserData(JSON.parse(storedUserDataJSON))
+    }
   }
   const data = {
-    "data": utterancesParam1
+    data: utterancesParam1,
   }
 
   useEffect(() => {
-    if ((isLogin && userdata.login !== "")) {
+    if (isLogin && userdata.login !== "") {
       setIsLogin(false)
-      window.location.href = "/";
+      window.location.href = "/"
     }
 
     const fetchData = async () => {
@@ -60,73 +60,67 @@ const NavBar: React.FC = () => {
 
         setUserData(dataUser)
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
-    };
-    const urlParams = new URLSearchParams(window.location.search);
-    const utterancesValue = urlParams.get("utterances");
+    }
+    const urlParams = new URLSearchParams(window.location.search)
+    const utterancesValue = urlParams.get("utterances")
     if (utterancesValue) {
-      setUtterancesParam(utterancesValue);
-      localStorage.setItem("utterances-session", utterancesValue);
+      setUtterancesParam(utterancesValue)
+      localStorage.setItem("utterances-session", utterancesValue)
       setIsLogin(true)
     }
 
     if (localStorage.getItem("utterances-session")) {
       setIsLogin(true)
-      
     }
-    
-    fetchData();
+
+    fetchData()
   }, [isLogin])
   return (
     <StyledWrapper>
       <div className="wrapper">
-        {isLogin && userdata.login !== "" ?
-          <div className="more-button" ref={dropdownLogout} onClick={handleLogout} >
-            <a>
-              {userdata.login}
-              
-            </a>
+        {isLogin && userdata.login !== "" ? (
+          <div className="more-button" ref={dropdownLogout} onClick={handleLogout}>
+            <a>{userdata.login}</a>
           </div>
-          
-          :
+        ) : (
           <div className="more-button">
-            <a
-              className="btn btn-primary"
-              href={redirect_uri}
-              target="_top"
-            >
+            <a className="btn btn-primary" href={redirect_uri} target="_top">
               Sign in with GitHub
             </a>
           </div>
-        } 
-        <Link className="more-button" href={"/about"}>Analyst</Link>
-        {isLogin && userdata.login !== ""
-        ? 
-        <div>
-          <Link onClick={() => handleReload("/profile")} href={"/profile"} className="more-button"> Profile</Link>
-        </div>
-        : <></>
-        }
+        )}
+        <Link className="more-button" href="/about">
+          Analyst
+        </Link>
+        <Link className="more-button" href="/submit">
+          Submit Post
+        </Link>
+        {isLogin && userdata.login !== "" ? (
+          <div>
+            <Link
+              onClick={() => handleReload("/profile")}
+              href="/profile"
+              className="more-button"
+            >
+              Profile
+            </Link>
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
-
-      {opened && (
-        <div className="content">
-          {links.map((link, i) => (
-            <div className="item" key={i}>
-              <Link className="item" href={link.to}>
-                {link.name}
-              </Link>
-            </div>
-          ))}
-        </div>
-      )}
 
       {logout && (
         <div className="content">
           {logouts.map((link, i) => (
             <div className="item" key={i}>
-              <Link className="item" onClick={() => handleLogoutGithub()} href={link.to}>
+              <Link
+                className="item"
+                onClick={() => handleLogoutGithub()}
+                href={link.to}
+              >
                 {link.name}
               </Link>
             </div>
